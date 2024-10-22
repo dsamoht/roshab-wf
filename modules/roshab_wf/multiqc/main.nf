@@ -10,14 +10,14 @@ process MULTIQC {
 
     input:
     path multiqc_files, stageAs: "?/*"
+    path assets_dir
 
     output:
     path "*.html", emit: report
     path "*_data", emit: data
 
     """
-    cp ${projectDir}/assets/* .
-    multiqc -c ./multiqc_config.yml .
+    multiqc -c ${assets_dir}/multiqc_config.yml .
     mv *.html multiqc_${params.exp}.html
     mv *_data multiqc_${params.exp}_data
     """
