@@ -48,6 +48,6 @@ workflow ROSHAB_WF {
                         ch_bracken_out.ifEmpty([])
                         ).map { it[1] }.collect()   
    
-   MULTIQC(ch_multiqc_files)
+   MULTIQC(ch_multiqc_files, channel.fromPath("${projectDir}/assets"))
 
 }
